@@ -28,6 +28,13 @@ public class ArticleController : ControllerBase
         return _service.CreateArticle(article);
     }
 
+    [HttpGet]
+    [Route("/api/articles/{articleId}")]
+    public Article GetArticle([FromRoute] int articleId)
+    {
+        return _service.GetArticles(articleId);
+    }
+
     [HttpPut]
     [Route("/api/articles/{articleId}")]
     public Article UpdateArticle([FromBody] Article article, [FromRoute] int articleId)
@@ -40,5 +47,12 @@ public class ArticleController : ControllerBase
     public object DeleteArticle([FromRoute] int articleId)
     {
         return _service.DeleteArticle(articleId);
+    }
+
+    [HttpGet]
+    [Route("/api/articles")]
+    public IEnumerable<Article> SearchArticles([FromQuery] String searchterm, [FromQuery] int pageSize)
+    {
+        return _service.SearchArticles(searchterm, pageSize);
     }
 }

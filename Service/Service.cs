@@ -20,7 +20,7 @@ public class Service
         }
         catch (Exception)
         {
-            throw new Exception("Could not get Articles");
+            throw new Exception("Could not get articles.");
         }
     }
 
@@ -28,7 +28,7 @@ public class Service
     {
         try
         {
-            return _repository.CreateArticle(article.Headline, article.Author, article.Body, article.ArticleImgUrl);
+            return _repository.CreateArticle(article);
         }
         catch (Exception)
         {
@@ -40,7 +40,7 @@ public class Service
     {
         try
         {
-            return _repository.UpdateArticle(articleId, article.Headline, article.Author, article.Body, article.ArticleImgUrl);
+            return _repository.UpdateArticle(articleId, article);
         }
         catch (Exception)
         {
@@ -57,6 +57,30 @@ public class Service
         catch (Exception)
         {
             throw new Exception("Could not delete article.");
+        }
+    }
+
+    public Article GetArticles(int articleId)
+    {
+        try
+        {
+            return _repository.GetArticle(articleId);
+        }
+        catch (Exception)
+        {
+            throw new Exception("Could not get article.");
+        }
+    }
+
+    public IEnumerable<Article> SearchArticles(string searchterm, int pageSize)
+    {
+        try
+        {
+            return _repository.SearchArticles(searchterm, pageSize);
+        }
+        catch (Exception)
+        {
+            throw new Exception("Could not search for articles.");
         }
     }
 }
