@@ -83,8 +83,8 @@ public class Repository
     public IEnumerable<Article> SearchArticles(string searchterm, int pageSize)
     {
         var sql = $@"SELECT * FROM news.articles 
-                    WHERE body LIKE @searchterm OR
-                    WHERE headline LIKE @searchterm
+                    WHERE body LIKE '%' || @searchterm || '%' OR 
+                    headline LIKE '%' || @searchterm || '%'
                     LIMIT @pagesize;";
         if (searchterm.Length >= 3)
         {
